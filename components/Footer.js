@@ -54,7 +54,7 @@ export default function Footer() {
           <p>© 2025 KayraCraft. All rights reserved.</p>
           <div className="flex gap-6">
             <Link href="/privacy-policy" className="hover:text-sand transition-colors">Privacy Policy</Link>
-            <a href="#" className="hover:text-sand transition-colors">Terms of Service</a>
+            <Link href="/terms-and-conditions" className="hover:text-sand transition-colors">Terms &amp; Conditions</Link>
             <Link href="/contact" className="hover:text-sand transition-colors">Contact Us</Link>
           </div>
         </div>

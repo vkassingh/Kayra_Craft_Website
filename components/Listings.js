@@ -1,5 +1,18 @@
 "use client";
 
+import { useEffect, useState } from "react";
+
+const imagePaths = [
+  "/images/dining.jpg",
+  "/images/heroImage.jpg",
+  "/images/newbed.jpg",
+  "/images/sofa-image.jpg",
+  "/images/sofa-image1.jpg",
+  "/images/sofa-image2.jpg",
+  "/images/sofa-image3.jpg",
+  "/images/sofa-image4.jpg",
+];
+
 const listings = [
   {
     id: 1,
@@ -7,7 +20,6 @@ const listings = [
     artisan: "Ravi Woodworks",
     price: "₹28,500",
     tag: "Bestseller",
-    img: "/images/dining-table.jpg",
     fallback: "🪑",
   },
   {
@@ -16,7 +28,6 @@ const listings = [
     artisan: "Priya Crafts",
     price: "₹12,000",
     tag: "New",
-    img: "/images/lounge-chair.jpg",
     fallback: "🛋️",
   },
   {
@@ -25,7 +36,6 @@ const listings = [
     artisan: "Arjun Furniture Co.",
     price: "₹18,750",
     tag: "Popular",
-    img: "/images/bookshelf.jpg",
     fallback: "📚",
   },
   {
@@ -34,7 +44,6 @@ const listings = [
     artisan: "Craftsmen Guild",
     price: "₹42,000",
     tag: "Premium",
-    img: "/images/bed-frame.jpg",
     fallback: "🛏️",
   },
   {
@@ -43,7 +52,6 @@ const listings = [
     artisan: "Sunita Artisans",
     price: "₹9,500",
     tag: "Sale",
-    img: "/images/coffee-table.jpg",
     fallback: "☕",
   },
   {
@@ -52,7 +60,6 @@ const listings = [
     artisan: "Heritage Crafts",
     price: "₹15,200",
     tag: "Handpicked",
-    img: "/images/side-cabinet.jpg",
     fallback: "🗄️",
   },
 ];
@@ -67,6 +74,19 @@ const tagColors = {
 };
 
 export default function Listings() {
+  const [listingImages, setListingImages] = useState(imagePaths.slice(0, listings.length));
+
+  useEffect(() => {
+    const shuffledImages = [...imagePaths];
+
+    for (let i = shuffledImages.length - 1; i > 0; i--) {
+      const randomIndex = Math.floor(Math.random() * (i + 1));
+      [shuffledImages[i], shuffledImages[randomIndex]] = [shuffledImages[randomIndex], shuffledImages[i]];
+    }
+
+    setListingImages(shuffledImages.slice(0, listings.length));
+  }, []);
+
   return (
     <section id="listings" className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-6">
@@ -81,7 +101,7 @@ export default function Listings() {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {listings.map(({ id, name, artisan, price, tag, img, fallback }) => (
+          {listings.map(({ id, name, artisan, price, tag, fallback }, index) => (
             <div
               key={id}
               className="group bg-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-sand/20"
@@ -89,7 +109,7 @@ export default function Listings() {
               {/* Image / Fallback */}
               <div className="relative h-56 bg-gradient-to-br from-sand/20 to-walnut/10 flex items-center justify-center overflow-hidden">
                 <img
-                  src={img}
+                  src={listingImages[index]}
                   alt={name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   onError={(e) => {

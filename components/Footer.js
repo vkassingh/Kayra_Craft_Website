@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const footerLinks = {
   Shop: ["New Arrivals", "Bestsellers", "Living Room", "Bedroom", "Outdoor"],
   Sell: ["Start Selling", "Seller Guide", "Pricing", "Artisan Stories"],
@@ -51,9 +53,9 @@ export default function Footer() {
         <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-cream/40">
           <p>© 2025 KayraCraft. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-sand transition-colors">Privacy Policy</a>
+            <Link href="/privacy-policy" className="hover:text-sand transition-colors">Privacy Policy</Link>
             <a href="#" className="hover:text-sand transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-sand transition-colors">Cookie Policy</a>
+            <Link href="/contact" className="hover:text-sand transition-colors">Contact Us</Link>
           </div>
         </div>
       </div>

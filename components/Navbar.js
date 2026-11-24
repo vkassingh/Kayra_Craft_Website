@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Link from "next/link";
 
 const links = ["Shop", "Sell", "How It Works", "About"];
 
@@ -9,9 +10,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 w-full z-50 bg-cream/90 backdrop-blur-md border-b border-sand/30 shadow-sm">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-2xl font-serif font-bold text-walnut tracking-wide">
+        <Link href="/" className="text-2xl font-serif font-bold text-walnut tracking-wide">
           Kayra<span className="text-sand">Craft</span>
-        </a>
+        </Link>
 
         {/* Desktop Links */}
         <ul className="hidden md:flex gap-8 text-sm font-medium text-charcoal">
@@ -25,11 +26,11 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden md:flex gap-3">
-          <a href="#sell" className="px-4 py-2 text-sm border border-walnut text-walnut rounded-full hover:bg-walnut hover:text-cream transition-all">
+          <Link href="/contact" className="px-4 py-2 text-sm border border-walnut text-walnut rounded-full hover:bg-walnut hover:text-cream transition-all">
+            Contact Us
+          </Link>
+          <a href="/#sell" className="px-4 py-2 text-sm bg-walnut text-cream rounded-full hover:bg-sand transition-all">
             Start Selling
-          </a>
-          <a href="#shop" className="px-4 py-2 text-sm bg-walnut text-cream rounded-full hover:bg-sand transition-all">
-            Browse
           </a>
         </div>
 
@@ -53,7 +54,10 @@ export default function Navbar() {
               {l}
             </a>
           ))}
-          <a href="#sell" className="text-center px-4 py-2 border border-walnut text-walnut rounded-full hover:bg-walnut hover:text-cream transition-all">
+          <Link href="/contact" className="text-center px-4 py-2 border border-walnut text-walnut rounded-full hover:bg-walnut hover:text-cream transition-all" onClick={() => setOpen(false)}>
+            Contact Us
+          </Link>
+          <a href="/#sell" className="text-center px-4 py-2 bg-walnut text-cream rounded-full hover:bg-sand transition-all" onClick={() => setOpen(false)}>
             Start Selling
           </a>
         </div>
